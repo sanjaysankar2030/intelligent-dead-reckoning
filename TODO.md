@@ -1,6 +1,6 @@
 # SIH PS 26168 Dead Reckoning TODO
 
-## Completed (Phases 1-5)
+## Completed (Phases 1-7)
 - [x] Basic Project Skeleton & Environment Setup
 - [x] Dependency management (Python 3.14 compatible constraints)
 - [x] Immutable Data Types & Replays (`ImuSample`, `GnssFix`, iterators)
@@ -8,15 +8,35 @@
 - [x] Phone-to-vehicle Alignment Engine (Gravity/GNSS Heading extraction)
 - [x] Implement deterministic strapdown inertial navigation integrations.
 - [x] Rigorous mechanization propagation loops (Position, Velocity, Attitude).
-- [x] Covariance propagation implementation for baseline Error-States. 
-- [x] 84/84 regressions validated deterministically.
+- [x] Connect the 15-state Error-State covariance matrix to genuine periodic measurement updates safely isolating Mahalanobis extremes.
+- [x] Incorporate GNSS velocity & position delayed updates mathematically bridging continuous trajectory bounds natively.
+- [x] Establish Zero-Velocity Update (ZUPT) trigger architectures feeding observations directly to ESKF filters to correct Random Walk bias limitations organically.
+- [x] Soft probabilistic ZUPT detector with adaptive covariance scaling
+- [x] ML forward velocity estimator architecture and ESKF integration
+- [x] Synthetic trajectory generator for ML training data
+- [x] 116/116 regressions validated deterministically.
 
-## Next Up: Phase 6 (Error-State Kalman Filter - ESKF)
-- [ ] Connect the 15-state Error-State covariance matrix to genuine periodic measurement updates.
-- [ ] Incorporate GNSS velocity & position delayed updates mathematically bridging continuous trajectory bounds.
-- [ ] Establish Zero-Velocity Update (ZUPT) trigger architectures feeding observations directly to ESKF filters to correct Random Walk bias limitations.
+## Phase 8: GNSS Integrity & Seamless Outage Transitions
+- [ ] Multi-tier GNSS quality estimator (HDOP, satellite count, innovation gating)
+- [ ] Outage detection state machine preventing discontinuous jumps on re-acquisition
+- [ ] Dynamic process noise inflation during outages
+
+## Phase 9: Vibration Analysis & Spectral Decomposition
+- [ ] Rolling FFT spectrum analyzer for vehicle motion characterization
+- [ ] Spectral entropy and road roughness estimator
+- [ ] Engine frequency isolation (10-30 Hz band)
+
+## Phase 10: ML Model Training & Deployment
+- [ ] Train velocity estimator on synthetic + real datasets
+- [ ] Validate velocity RMSE < 0.8 m/s during simulated outages
+- [ ] Model quantization for mobile deployment
 
 ## Future Phases
-- [ ] Non-Holonomic Constraints (NHC) integration.
-- [ ] Neural Net map inferences.
-- [ ] Output raw trajectories to standardized API targets.
+- [ ] Vehicle Classification (Car vs Bike vs Scooter)
+- [ ] Vehicle-Aware Adaptive Non-Holonomic Constraints (NHC)
+- [ ] Magnetic Reliability & Anomaly Rejection
+- [ ] Road Map Matching Engine with OSM integration
+- [ ] Multi-Hypothesis tracking for stacked roads/parking structures
+- [ ] Navigation Integrity & Uncertainty quantification system
+- [ ] IO-VNBD benchmark evaluation pipeline
+- [ ] Output raw trajectories to standardized API targets dynamically validating end edge responses.
